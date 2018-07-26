@@ -183,12 +183,15 @@ if (!window.clearImmediate) {
                   '"Arial Unicode MS", "Droid Fallback Sans", sans-serif',
       fontWeight: 'normal',
       color: 'random-dark',
-      minSize: 0, // 0 to disable
-      weightFactor: 1,
+      minSize: 0, // 0 to disable,
+      cloudSize: [100, 100],
+      weightFactor: function (size) {
+        return Math.pow(size, 2.3) * cloudSize[0] / 1024;
+      },
       clearCanvas: true,
       backgroundColor: '#fff',  // opaque white = rgba(255, 255, 255, 1)
 
-      gridSize: 8,
+      gridSize: Math.round(16 * cloudSize[0] / 1024),
       drawOutOfBound: false,
       origin: null,
 
